@@ -45,7 +45,7 @@ const Home = () => {
                 AI & Medical Informatics
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 animate-fade-in text-gray-600" style={{ animationDelay: "0.1s" }}>
+            <p className="text-lg md:text-xl text-muted-foreground mb-8 animate-fade-in text-gray-700" style={{ animationDelay: "0.1s" }}>
               SpeechCARE is a research team dedicated to developing innovative AI and deep learning
               solutions that transform medical informatics and improve patient outcomes.
             </p>

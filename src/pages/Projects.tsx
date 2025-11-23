@@ -28,43 +28,45 @@ const Projects = () => {
           </p>
 
           <div className="space-y-6">
-            {projects.map((project, index) => (
-              <Card
-                key={index}
-                className="shadow-card hover:shadow-hover transition-all duration-300 hover:-translate-y-1 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-2">
-                    <CardTitle className="text-2xl font-heading">
-                      {project.slug ? (
-                        <Link
-                          to={`/projects/${project.slug}`}
-                          className="hover:text-primary transition-colors"
-                        >
-                          {project.title}
-                        </Link>
-                      ) : (
-                        project.title
-                      )}
-                    </CardTitle>
-                    <Badge variant={project.status === "Active" ? "default" : "secondary"}>
-                      {project.status}
-                    </Badge>
-                  </div>
-                  <CardDescription className="text-base">{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="outline" className="text-xs">
-                        {tag}
+            {projects.map((project, index) => {
+              const cardContent = (
+                <Card
+                  className={`shadow-card hover:shadow-hover transition-all duration-300 hover:-translate-y-1 animate-fade-in ${
+                    project.slug ? "cursor-pointer" : ""
+                  }`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <CardHeader>
+                    <div className="flex items-start justify-between mb-2">
+                      <CardTitle className="text-2xl font-heading group-hover:text-primary transition-colors">
+                        {project.title}
+                      </CardTitle>
+                      <Badge variant={project.status === "Active" ? "default" : "secondary"}>
+                        {project.status}
                       </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                    </div>
+                    <CardDescription className="text-base">{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag, tagIndex) => (
+                        <Badge key={tagIndex} variant="outline" className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+
+              return project.slug ? (
+                <Link key={index} to={`/projects/${project.slug}`} className="block group">
+                  {cardContent}
+                </Link>
+              ) : (
+                <div key={index} className="group">{cardContent}</div>
+              );
+            })}
           </div>
         </div>
       </div>
